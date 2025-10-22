@@ -6,7 +6,7 @@ For this challenge, we will build a todo app (which is a common way to practice 
 
 ### 0. Cloning and installation
 
-- [ ] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
+- [x] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
   <details style="padding-left: 2em">
     <summary>Tip</summary>
 
@@ -21,7 +21,7 @@ For this challenge, we will build a todo app (which is a common way to practice 
 
   </details>
 
-- [ ] See the designs [here](http://localhost:5173/designs/index.html)
+- [x] See the designs [here](http://localhost:5173/designs/index.html)
 
 <details>
   <summary>More about using <code>npm</code> vs <code>npx</code></summary>
@@ -39,13 +39,13 @@ Here's a list of steps in case they are useful. You can build in any order you l
 
 ### 1. Building the database
 
-- [ ] Design a database to store a list of tasks, e.g. task details, priority, completed yes/no
-- [ ] Build the migrations and seed data
+- [x] Design a database to store a list of tasks, e.g. task details, priority, completed yes/no
+- [x] Build the migrations and seed data
 
 ### 2. Building the API
 
-- [ ] Build an API (back end route) to get the information from your database (list, add, update and delete)
-- [ ] Test your API with Postman
+- [x] Build an API (back end route) to get the information from your database (list, add, update and delete)
+- [x] Test your API with Postman
 
 ## Front end (Client-side)
 
@@ -58,10 +58,10 @@ Here's a list of steps in case they are useful. You can build in any order you l
 
 - [ ] Build API client in the front end
 
-### 5. Querying Data 
+### 5. Querying Data
 
 - [ ] Write a query with the `useQuery` hook to fetch the task data from the API
-- [ ] Mutate data with the `useMutation` hook to create, update, and delete task data via the API 
+- [ ] Mutate data with the `useMutation` hook to create, update, and delete task data via the API
 
 ---
 
@@ -79,7 +79,7 @@ Here's a list of steps in case they are useful. You can build in any order you l
 ## Submitting this Challenge for Marking
 
 This challenge can be used for the following trello assessments:
- 
+
 - **WD03 - Forms**
 - **WD04 - Fullstack** (**Note** - you will need to deploy this challenge to Render to pass this trello assessment.)
 
