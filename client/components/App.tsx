@@ -2,17 +2,18 @@
 import { useState } from 'react'
 import AddTodo from './AddTodo.tsx'
 import Tasks from './Tasks.tsx'
-// functions needing to be made
+import Footer from './Footer.tsx'
 
 // footer stuff
 // Delete completed
-// filtering buttons
 // detect how many completed
 
 function App() {
   const [isVisible, setIsVisible] = useState<boolean | void>(() => {
     return JSON.parse(localStorage.getItem('isVisible') || 'true')
   }) // Toggle visibility
+
+  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
 
   const handleToggle = () => {
     setIsVisible((prev) => {
@@ -37,7 +38,6 @@ function App() {
           onClick={handleToggle}
           tabIndex={-1}
         />
-        {/* Hide all below if toggled */}
         <label
           aria-label="Toggle all styling"
           htmlFor="toggle-all"
@@ -50,35 +50,12 @@ function App() {
           }}
         ></label>
         <div style={{ display: isVisible ? 'block' : 'none' }}>
-          <Tasks />
+          <Tasks filter={filter} />
         </div>
       </section>
       {/*<!-- This footer should hidden by default and shown when there are todos -->*/}
       <footer className="footer">
-        <span className="todo-count">
-          {/* reference this to tasks that arent completed */}
-          <strong>0</strong> Item left
-        </span>
-        <ul className="filters">
-          <li>
-            {/* get all */}
-            <a href="#/">All</a>
-          </li>
-          <li>
-            {/* get all that arent completed */}
-            <a href="#/active">Active</a>
-          </li>
-          <li>
-            {/* get all that are completed */}
-            <a href="#/completed">Completed</a>
-          </li>
-        </ul>
-        {/* <!-- Hidden if no completed items are left ↓ --> */}
-
-        <button className="clear-completed">
-          {/* delete all that are completed */}
-          Clear completed
-        </button>
+        <Footer setFilter={setFilter} />
       </footer>
     </>
   )
