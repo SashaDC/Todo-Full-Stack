@@ -5,6 +5,8 @@ export default function Tasks() {
   const { isPending, isError, data } = useGetTasks()
   const deleteTask = useDeleteTask()
   const updateTask = useUpdateTask()
+  const [isEditing, setIsEditing] = useState<number | null>(null)
+  const [value, setValue] = useState('')
 
   if (isPending) {
     return 'loading'
@@ -22,7 +24,26 @@ export default function Tasks() {
     })
   }
 
-  // Need a doubleclick edit
+  const handleChange = (e) => {
+    setValue(e.target.value)
+  }
+
+  const handleUpdate = async (task) => {
+    setIsEditing(task.id)
+    setValue(task.task)
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const task = data.find((t) => t.id === isEditing)
+    if (!task) return
+    await updateTask.mutate({
+      ...task,
+      task: value,
+    })
+    setIsEditing(null)
+    setValue('')
+  }
 
   const handleDelete = async (id: number) => {
     await deleteTask.mutate(id)
@@ -32,20 +53,38 @@ export default function Tasks() {
     <>
       <ul className="todo-list">
         {data.map((task) => (
-          <li key={task.id} className={task.completed ? 'completed' : ''}>
+          <li
+            key={task.id}
+            className={`${task.completed ? 'completed' : ''} ${isEditing === task.id ? 'editing' : ''}`}
+          >
             <div className="view">
               <input
                 className="toggle"
                 type="checkbox"
                 checked={task.completed}
+                aria-label="Task Complete?"
                 onClick={() => handleToggle(task.id)}
               />
-              <label>{task.task}</label>
+              <label onDoubleClick={() => handleUpdate(task)}>
+                {task.task}
+              </label>
               <button
                 className="destroy"
+                aria-label="Delete Task"
                 onClick={() => handleDelete(task.id)}
-              ></button>
+              />
             </div>
+            {isEditing == task.id && (
+              <form aria-label="To Do List" onSubmit={handleSubmit}>
+                <input
+                  className="edit"
+                  value={value}
+                  aria-label="Edit Task Here"
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </form>
+            )}
           </li>
         ))}
       </ul>
