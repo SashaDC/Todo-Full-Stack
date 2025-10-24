@@ -1,6 +1,6 @@
-import { Filters } from '../../models/filters'
+import { FooterFilter } from '../../models/filters'
 
-export default function Footer({ setFilter }: Filters) {
+export default function Footer({ setFilter }: FooterFilter) {
   return (
     <>
       <span className="todo-count">

@@ -2,9 +2,9 @@
 import { ChangeEvent, useState } from 'react'
 import { useGetTasks, useDeleteTask, useUpdateTask } from '../hooks/useTasks'
 import { Task } from '../../models/task'
-import { Filters } from '../../models/filters'
+import { TasksFilters } from '../../models/filters'
 
-export default function Tasks({ filter }) {
+export default function Tasks({ filter }: TasksFilters) {
   const { isPending, isError, data } = useGetTasks()
   const deleteTask = useDeleteTask()
   const updateTask = useUpdateTask()

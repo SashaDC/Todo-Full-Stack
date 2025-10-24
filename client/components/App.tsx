@@ -4,14 +4,10 @@ import AddTodo from './AddTodo.tsx'
 import Tasks from './Tasks.tsx'
 import Footer from './Footer.tsx'
 
-// footer stuff
-// Delete completed
-// detect how many completed
-
 function App() {
   const [isVisible, setIsVisible] = useState<boolean | void>(() => {
     return JSON.parse(localStorage.getItem('isVisible') || 'true')
-  }) // Toggle visibility
+  })
 
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
 
