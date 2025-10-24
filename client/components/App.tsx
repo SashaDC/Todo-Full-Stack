@@ -10,10 +10,16 @@ import Tasks from './Tasks.tsx'
 // detect how many completed
 
 function App() {
-  const [isVisible, setIsVisible] = useState<boolean>(false) // Toggle visibility
+  const [isVisible, setIsVisible] = useState<boolean | void>(() => {
+    return JSON.parse(localStorage.getItem('isVisible') || 'true')
+  }) // Toggle visibility
 
   const handleToggle = () => {
-    setIsVisible((prev) => !prev)
+    setIsVisible((prev) => {
+      const value = !prev
+      localStorage.setItem('isVisible', JSON.stringify(value))
+      return value
+    })
   }
 
   return (
