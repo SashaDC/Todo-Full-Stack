@@ -15,7 +15,6 @@ function AddTodo() {
     e.preventDefault()
     await addTask.mutate({
       task: inputState,
-      priority: 'low',
       completed: false,
     })
     setInputState('')
