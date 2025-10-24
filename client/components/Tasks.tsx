@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { ChangeEvent, useState } from 'react'
 import { useGetTasks, useDeleteTask, useUpdateTask } from '../hooks/useTasks'
 import { Task } from '../../models/task'
+import { Filters } from '../../models/filters'
 
-export default function Tasks() {
+export default function Tasks({ filter }) {
   const { isPending, isError, data } = useGetTasks()
   const deleteTask = useDeleteTask()
   const updateTask = useUpdateTask()
@@ -15,6 +17,12 @@ export default function Tasks() {
   if (isError) {
     return 'error'
   }
+
+  const filteredTasks = data.filter((task) => {
+    if (filter == 'all') return true
+    if (filter == 'completed') return task.completed
+    if (filter == 'active') return !task.completed
+  })
 
   const handleToggle = async (id: number) => {
     const task = data.find((t) => t.id === id)
@@ -65,7 +73,7 @@ export default function Tasks() {
   return (
     <>
       <ul className="todo-list">
-        {data.map((task) => (
+        {filteredTasks.map((task) => (
           <li
             key={task.id}
             className={`${task.completed ? 'completed' : ''} ${isEditing === task.id ? 'editing' : ''}`}
@@ -80,8 +88,12 @@ export default function Tasks() {
                 onClick={() => handleToggle(task.id)}
               />
               <label
+                tabIndex={0}
                 htmlFor={`${task.id}`}
                 onDoubleClick={() => handleUpdate(task)}
+                onKeyDown={(e) => {
+                  if (e.key === ' ') handleUpdate(task)
+                }}
               >
                 {task.task}
               </label>
