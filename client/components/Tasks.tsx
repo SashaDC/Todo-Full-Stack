@@ -48,6 +48,16 @@ export default function Tasks() {
     setValue('')
   }
 
+  const handleBlur = async () => {
+    const task = data.find((t) => t.id === isEditing)
+    if (!task) return
+    await updateTask.mutate({
+      ...task,
+      task: value,
+    })
+    setIsEditing(null)
+    setValue('')
+  }
   const handleDelete = async (id: number) => {
     await deleteTask.mutate(id)
   }
@@ -84,6 +94,7 @@ export default function Tasks() {
                   value={value}
                   aria-label="Edit Task Here"
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   autoFocus
                 />
               </form>
