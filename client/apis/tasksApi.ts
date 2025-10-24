@@ -16,7 +16,7 @@ export async function addNewTask(newTask: TaskData) {
 }
 
 // Deleting
-export async function deleteTask(id: number) {
+export async function deleteTaskById(id: number) {
   await request.del(`${rootURL}/tasks/${id}`)
   return
 }
@@ -27,4 +27,14 @@ export async function updateTask(updatedTask: Task) {
     .patch(`${rootURL}/tasks/${updatedTask.id}`)
     .send(updatedTask)
   return res.body as Task[]
+}
+
+export async function deleteAllCompletedTasks() {
+  await request.del(`${rootURL}/tasks/delete-all`)
+  return
+}
+
+export async function countActiveTasks() {
+  const res = await request.get(`${rootURL}/tasks/count-active`)
+  return res.body
 }

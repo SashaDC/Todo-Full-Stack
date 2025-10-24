@@ -27,11 +27,21 @@ router.post('/', async (req, res) => {
   }
 })
 
+router.delete('/delete-all', async (req, res) => {
+  try {
+    await db.deleteAllCompletedTasks()
+    res.sendStatus(204)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('something went wrong')
+  }
+})
+
 // DELETE localhost:3000/api/v1/tasks/:id
 router.delete('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
-    await db.deleteTask(id)
+    await db.deleteTaskById(id)
     res.sendStatus(204)
   } catch (error) {
     console.error(error)
@@ -46,6 +56,17 @@ router.patch('/:id', async (req, res) => {
     const task = req.body
     await db.updateTask(id, task)
     res.sendStatus(204)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('something went wrong')
+  }
+})
+
+router.get('/count-active', async (req, res) => {
+  try {
+    const count = await db.countActiveTasks()
+    // status 200
+    res.json(count)
   } catch (error) {
     console.error(error)
     res.status(500).send('something went wrong')
