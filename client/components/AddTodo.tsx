@@ -29,6 +29,7 @@ function AddTodo() {
         aria-label="Add Task Here"
         value={inputState}
         onChange={handleChange}
+        autoFocus
       />
     </form>
   )
