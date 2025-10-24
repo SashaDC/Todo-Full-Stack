@@ -72,13 +72,17 @@ export default function Tasks() {
           >
             <div className="view">
               <input
+                id={`${task.id}`}
                 className="toggle"
                 type="checkbox"
                 checked={task.completed}
                 aria-label="Task Complete?"
                 onClick={() => handleToggle(task.id)}
               />
-              <label onDoubleClick={() => handleUpdate(task)}>
+              <label
+                htmlFor={`${task.id}`}
+                onDoubleClick={() => handleUpdate(task)}
+              >
                 {task.task}
               </label>
               <button
