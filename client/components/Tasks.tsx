@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useGetTasks, useDeleteTask, useUpdateTask } from '../hooks/useTasks'
+import { Task } from '../../models/task'
 
 export default function Tasks() {
   const { isPending, isError, data } = useGetTasks()
@@ -24,11 +25,13 @@ export default function Tasks() {
     })
   }
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setValue(e.target.value)
   }
 
-  const handleUpdate = async (task) => {
+  const handleUpdate = async (task: Task) => {
     setIsEditing(task.id)
     setValue(task.task)
   }
