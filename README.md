@@ -51,17 +51,17 @@ Here's a list of steps in case they are useful. You can build in any order you l
 
 ### 3. Setting the stage
 
-- [ ] Build a React component with static html
-- [ ] Follow the [design](./public/designs/index.html) template for classNames and html element layout
+- [x] Build a React component with static html
+- [x] Follow the [design](./public/designs/index.html) template for classNames and html element layout
 
 ### 4. Building the API client
 
-- [ ] Build API client in the front end
+- [x] Build API client in the front end
 
 ### 5. Querying Data
 
-- [ ] Write a query with the `useQuery` hook to fetch the task data from the API
-- [ ] Mutate data with the `useMutation` hook to create, update, and delete task data via the API
+- [x] Write a query with the `useQuery` hook to fetch the task data from the API
+- [x] Mutate data with the `useMutation` hook to create, update, and delete task data via the API
 
 ---
 
