@@ -1,6 +1,5 @@
 export interface TaskData {
   task: string
-  priority: string
   completed: boolean
 }
 
