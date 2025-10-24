@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const newTask = req.body
-    await db.AddNewTask(newTask)
+    await db.addNewTask(newTask)
     res.sendStatus(204)
   } catch (error) {
     console.error(error)

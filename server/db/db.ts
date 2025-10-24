@@ -5,7 +5,7 @@ export async function getTasks(): Promise<Task[]> {
   return db('tasks').select('id', 'task', 'priority', 'completed')
 }
 
-export async function AddNewTask(newTask: TaskData): Promise<number[]> {
+export async function addNewTask(newTask: TaskData): Promise<number[]> {
   return db('tasks').insert(newTask)
 }
 
