@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react'
 import AddTodo from './AddTodo.tsx'
 import Tasks from './Tasks.tsx'
@@ -28,9 +29,20 @@ function App() {
           type="checkbox"
           aria-label="Toggle viewing tasks?"
           onClick={handleToggle}
+          tabIndex={-1}
         />
         {/* Hide all below if toggled */}
-        <label htmlFor="toggle-all">something</label>
+        <label
+          aria-label="Toggle all styling"
+          htmlFor="toggle-all"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              handleToggle()
+              e.preventDefault()
+            }
+          }}
+        ></label>
         <div style={{ display: isVisible ? 'block' : 'none' }}>
           <Tasks />
         </div>
