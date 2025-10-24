@@ -35,6 +35,7 @@ function App() {
           <Tasks />
         </div>
       </section>
+      {/*<!-- This footer should hidden by default and shown when there are todos -->*/}
       <footer className="footer">
         <span className="todo-count">
           {/* reference this to tasks that arent completed */}
@@ -54,6 +55,8 @@ function App() {
             <a href="#/completed">Completed</a>
           </li>
         </ul>
+        {/* <!-- Hidden if no completed items are left ↓ --> */}
+
         <button className="clear-completed">
           {/* delete all that are completed */}
           Clear completed
