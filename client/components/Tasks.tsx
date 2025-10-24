@@ -1,16 +1,24 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useGetTasks, useDeleteTask, useUpdateTask } from '../hooks/useTasks'
 import { Task } from '../../models/task'
-import { TasksFilters } from '../../models/filters'
+import { TasksProps } from '../../models/filters'
 
-export default function Tasks({ filter }: TasksFilters) {
+export default function Tasks({ filter, setVisibility }: TasksProps) {
   const { isPending, isError, data } = useGetTasks()
   const deleteTask = useDeleteTask()
   const updateTask = useUpdateTask()
   const [isEditing, setIsEditing] = useState<number | null>(null)
   const [value, setValue] = useState('')
-
+  useEffect(() => {
+    if (!isPending && data) {
+      if (data.length === 0) {
+        setVisibility(null)
+      } else {
+        setVisibility(true)
+      }
+    }
+  }, [isPending, data, setVisibility])
   if (isPending) {
     return 'loading'
   }
@@ -66,6 +74,7 @@ export default function Tasks({ filter }: TasksFilters) {
     setIsEditing(null)
     setValue('')
   }
+
   const handleDelete = async (id: number) => {
     await deleteTask.mutate(id)
   }
