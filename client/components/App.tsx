@@ -20,13 +20,13 @@ function App() {
       <header className="header">
         <h1>todos</h1>
         <AddTodo />
-        {/* Make this work */}
       </header>
       <section className="main">
         <input
           id="toggle-all"
           className="toggle-all"
           type="checkbox"
+          aria-label="Toggle viewing tasks?"
           onClick={handleToggle}
         />
         {/* Hide all below if toggled */}
