@@ -1,7 +1,7 @@
 import request from 'superagent'
 import { Task, TaskData } from '../../models/task'
 
-const rootURL = new URL(`/api/v1/`, document.baseURI)
+const rootURL = new URL(`/api/v1`, document.baseURI)
 
 // Getting
 export async function getTasks(): Promise<Task[]> {
