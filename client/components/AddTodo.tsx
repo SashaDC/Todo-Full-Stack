@@ -13,6 +13,12 @@ function AddTodo() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (inputState.length < 3) {
+      return alert('Must be 3 characters long')
+    } else if (!/[A-Za-z0-9]/.test(inputState)) {
+      return alert('Must include at least one letter or number')
+    }
+
     await addTask.mutate({
       task: inputState,
       completed: false,
