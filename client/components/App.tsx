@@ -23,7 +23,6 @@ function App() {
       <header className="header">
         <h1>todos</h1>
         <AddTodo />
-        {/* onsubmit of a new todo it should setIsVisible to true */}
       </header>
       <section className="main">
         <input
