@@ -15,10 +15,12 @@ export default function Tasks({ filter, setVisibility }: TasksProps) {
       if (data.length === 0) {
         setVisibility(null)
       } else {
-        setVisibility(true)
+        const storedValue = localStorage.getItem('isVisible')
+        setVisibility(storedValue == 'true' ? true : false)
       }
     }
   }, [isPending, data, setVisibility])
+
   if (isPending) {
     return 'loading'
   }
@@ -94,7 +96,7 @@ export default function Tasks({ filter, setVisibility }: TasksProps) {
                 type="checkbox"
                 checked={task.completed}
                 aria-label="Task Complete?"
-                onClick={() => handleToggle(task.id)}
+                onChange={() => handleToggle(task.id)}
               />
               <label
                 tabIndex={0}
